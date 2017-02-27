@@ -1,3 +1,3 @@
 # ThreadTest
 Test
-Just implementation of data structures
+Consists of diffenrent .java files each has implemetation of data structures and few operations performed on them
