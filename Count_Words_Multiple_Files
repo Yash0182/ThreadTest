@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class MyThread implements Runnable
+{
+    String F;
+    int count;
+    MyThread(String F)
+    {
+        this.F=F;
+        count=0;
+    }
+    public void run()
+    {
+        Scanner sc = new Scanner(F);
+        while(sc.hasNext())
+        {
+            sc.next();
+            count++;
+        }
+    }
+    public static void main(String args[])
+    {
+        try
+        {
+        MyThread mt[]=new MyThread[args.length];
+        Thread t[]=new Thread[args.length];
+        for(int i=0;i<args.length;i++)
+        {
+            mt[i] = new MyThread(args[i]);
+            t[i] = new Thread(mt[i]);
+            t[i].start();
+            
+        }
+        int result=0;
+        for(int i=0;i<args.length;i++)
+        {
+            t[i].join();
+            result+=mt[i].count;
+            System.out.println(mt[i].count +" "+t[i].getName());
+        }
+        System.out.println(result);
+        }catch(Exception e)
+        {}
+    }
+}
